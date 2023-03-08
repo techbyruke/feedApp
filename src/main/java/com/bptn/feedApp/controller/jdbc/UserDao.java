@@ -37,7 +37,7 @@ public class UserDao {
 
 	public void createUser(UserBean user) {
 
-		String sql = "INSERT INTO \"User\" (\"user_first_name\", \"user_last_name\", \"user_handle\", user_phone_number, \"user_email\", user_password, \"email_verified\", \"date_created\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO \"User\" (\"user_first_name\", \"user_last_name\", \"user_handle\", \"user_phone_number\", \"user_email\", user_password, \"email_verified\", \"date_created\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		logger.debug("Insert Query: {}", sql);
 
