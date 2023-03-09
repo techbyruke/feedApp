@@ -37,11 +37,13 @@ public class UserController {
 		return this.userService.listUsers();
 	}
 	
-	@GetMapping("/{user_handle}")
-	public UserBean findByUsername(@PathVariable String user_handle) {
-		logger.debug("The findByUsername() method was invoked!, userName={}", user_handle);
-		return this.userService.findByUsername(user_handle);
+	@GetMapping("/{username}")
+	public UserBean findByUsername(@PathVariable String username) {
+		logger.debug("The findByUsername() method was invoked!, userName={}", username);
+		return this.userService.findByUser(username);
 	}
+
+	
 	
 	@GetMapping("/{first}/{last}/{username}/{password}/{phone}/{emailId}")
 	public String createUser( @PathVariable String first,@PathVariable String last,@PathVariable String username,@PathVariable String password, 
@@ -50,10 +52,10 @@ public class UserController {
 		
 		user.setUser_first_name(first);
 		user.setUser_last_name(last);
-		user.setUser_handle(username);
+		user.setUsername(username);
 		user.setUser_password(password);
 		user.setUser_phone_number(phone);
-		user.setUser_email(emailId);
+		user.setEmailId(emailId);
 		user.setEmail_verified(false);
 		user.setDate_created(Timestamp.from(Instant.now()));
 				

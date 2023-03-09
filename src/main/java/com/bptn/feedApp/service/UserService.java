@@ -22,8 +22,8 @@ public class UserService {
 			
 	}
 	
-	public UserBean findByUsername(String userName) {
-		return this.userDao.findByUsername(userName);
+	public UserBean findByUser(String username) {
+		return this.userDao.findByUsername(username);
 	}
 	
 	public void createUser(UserBean user) {
@@ -32,4 +32,7 @@ public class UserService {
 	
 	
 }
+
+
+
 

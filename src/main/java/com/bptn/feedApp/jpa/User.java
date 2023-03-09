@@ -30,15 +30,15 @@ public class User implements Serializable {
 	@Column(name="\"user_last_name\"")
 	private String user_last_name;
 
-	private String user_handle;
+	private String username;
 
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String user_password;
 		
 	private String user_phone_number;
 
-	@Column(name="\"user_email\"")
-	private String user_email;
+	@Column(name="\"emailId\"")
+	private String emailId;
 		
 	@Column(name="\"email_verified\"")
 	private Boolean email_verified;
@@ -80,13 +80,13 @@ public void setUser_last_name(String user_last_name) {
 }
 
 
-public String getUser_handle() {
-	return user_handle;
+public String getUsername() {
+	return username;
 }
 
 
-public void setUser_handle(String user_handle) {
-	this.user_handle = user_handle;
+public void setUsername(String username) {
+	this.username = username;
 }
 
 
@@ -110,13 +110,13 @@ public void setUser_phone_number(String user_phone_number) {
 }
 
 
-public String getUser_email() {
-	return user_email;
+public String getEmailId() {
+	return emailId;
 }
 
 
-public void setUser_email(String user_email) {
-	this.user_email = user_email;
+public void setEmailId(String emailId) {
+	this.emailId = emailId;
 }
 
 
@@ -146,8 +146,8 @@ public void setDate_created(Timestamp date_created) {
 @Override
 public String toString() {
 	return String.format(
-			"User [user_id=%s, user_first_name=%s, user_last_name=%s, user_handle=%s, user_password=%s, user_phone_number=%s, user_email=%s, email_verified=%s, date_created=%s]",
-			user_id, user_first_name, user_last_name, user_handle, user_password, user_phone_number, user_email,
+			"User [user_id=%s, user_first_name=%s, user_last_name=%s, username=%s, user_password=%s, user_phone_number=%s, emailId=%s, email_verified=%s, date_created=%s]",
+			user_id, user_first_name, user_last_name, username, user_password, user_phone_number, emailId,
 			email_verified, date_created);
 }
 }

@@ -22,11 +22,11 @@ public class UserDao {
 		return this.jdbcTemplate.query(sql, new UserMapper());
 	}
 
-	public UserBean findByUsername(String user_handle) {
+	public UserBean findByUsername(String username) {
 
-		String sql = "SELECT * FROM \"User\" WHERE \"user_handle\" = ?";
+		String sql = "SELECT * FROM \"User\" WHERE \"username\" = ?";
 
-		List<UserBean> users = this.jdbcTemplate.query(sql, new UserMapper(), user_handle);
+		List<UserBean> users = this.jdbcTemplate.query(sql, new UserMapper(), username);
 
 		/*
 		 * Returns null if users is empty otherwise, returns the first element in the
@@ -37,13 +37,13 @@ public class UserDao {
 
 	public void createUser(UserBean user) {
 
-		String sql = "INSERT INTO \"User\" (\"user_first_name\", \"user_last_name\", \"user_handle\", \"user_phone_number\", \"user_email\", user_password, \"email_verified\", \"date_created\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO \"User\" (\"user_first_name\", \"user_last_name\", \"username\", \"user_phone_number\", \"emailId\", user_password, \"email_verified\", \"date_created\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		logger.debug("Insert Query: {}", sql);
 
 		/* Executes the Insert Statement */
-		this.jdbcTemplate.update(sql, new Object[] { user.getUser_first_name(), user.getUser_last_name(), user.getUser_handle(),
-				user.getUser_phone_number(), user.getUser_email(), user.getUser_password(), user.getEmail_verified(), user.getDate_created() });
+		this.jdbcTemplate.update(sql, new Object[] { user.getUser_first_name(), user.getUser_last_name(), user.getUsername(),
+				user.getUser_phone_number(), user.getEmailId(), user.getUser_password(), user.getEmail_verified(), user.getDate_created() });
 
 	}
 

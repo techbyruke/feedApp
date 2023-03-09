@@ -7,12 +7,13 @@ public class UserBean {
 	private Integer user_id;
 	private String user_first_name;
 	private String user_last_name;
-	private String user_handle;
+	private String username;
 	private String user_password;
 	private String user_phone_number;
-	private String user_email;
+	private String emailId;
 	private Boolean email_verified;
 	private Timestamp date_created;
+	
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -31,11 +32,11 @@ public class UserBean {
 	public void setUser_last_name(String user_last_name) {
 		this.user_last_name = user_last_name;
 	}
-	public String getUser_handle() {
-		return user_handle;
+	public String getUsername() {
+		return username;
 	}
-	public void setUser_handle(String user_handle) {
-		this.user_handle = user_handle;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getUser_password() {
 		return user_password;
@@ -49,11 +50,11 @@ public class UserBean {
 	public void setUser_phone_number(String user_phone_number) {
 		this.user_phone_number = user_phone_number;
 	}
-	public String getUser_email() {
-		return user_email;
+	public String getEmailId() {
+		return emailId;
 	}
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 	public Boolean getEmail_verified() {
 		return email_verified;
@@ -71,7 +72,7 @@ public class UserBean {
 	@Override
 	public String toString() {
 		return "UserBean [userId=" + user_id + ", firstName=" + user_first_name + ", lastName=" + user_last_name + ", username="
-				+ user_handle + ", password=" + user_password + ", phone=" + user_phone_number + ", emailId=" + user_email + ", emailVerified="
+				+ username + ", password=" + user_password + ", phone=" + user_phone_number + ", emailId=" + emailId + ", emailVerified="
 				+ email_verified + ", createdOn=" + date_created + "]";
 	}
 		

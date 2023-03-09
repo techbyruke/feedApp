@@ -19,10 +19,10 @@ UserBean user = new UserBean();
 		user.setUser_id(rs.getInt("user_id"));
 		user.setUser_first_name(rs.getString("user_first_name"));
 		user.setUser_last_name(rs.getString("user_last_name"));
-		user.setUser_handle(rs.getString("user_handle"));
+		user.setUsername(rs.getString("username"));
 		user.setUser_password(rs.getString("user_password"));
 		user.setUser_phone_number(rs.getString("user_phone_number"));
-		user.setUser_email(rs.getString("user_email"));
+		user.setEmailId(rs.getString("emailId"));
 		user.setEmail_verified(rs.getBoolean("email_verified"));
 		user.setDate_created(rs.getTimestamp("date_created"));
 
