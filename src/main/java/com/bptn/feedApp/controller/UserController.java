@@ -30,7 +30,6 @@ public class UserController {
 		logger.debug("Signing up, username: {}", user.getUserName());
 		return this.userService.signup(user);
 	}
-	//added Username
 
 	@GetMapping("/test")
 	public String testController() {
