@@ -9,7 +9,6 @@ import com.bptn.feedApp.repository.UserRepository;
 
 import com.bptn.feedApp.jpa.User;
 
-
 @Service
 public class UserService {
 	
@@ -36,7 +35,7 @@ public class UserService {
 	
 public User signup(User user){
 		
-		user.setUserName(user.getUserName().toLowerCase());
+		user.setUsername(user.getUserName().toLowerCase());
 		user.setEmailId(user.getEmailId().toLowerCase());
 		
 		user.setEmailVerified(false);
@@ -46,6 +45,7 @@ public User signup(User user){
 		this.userRepository.save(user);
 		
 		return user;
+		
 		
 	}
 

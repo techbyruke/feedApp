@@ -98,7 +98,7 @@ public class User implements Serializable {
 		return username;
 	}
 
-	public void setUserName(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
