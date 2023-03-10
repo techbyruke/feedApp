@@ -14,6 +14,10 @@ public class UserService {
 	
 	@Autowired
 	UserRepository userRepository;
+	    
+	@Autowired
+	EmailService emailService;
+	
 	
 	
 	public List<User> listUsers() {
@@ -31,6 +35,7 @@ public class UserService {
 
 	public void createUser(User user) {
 		this.userRepository.save(user);
+	    this.emailService.sendVerificationEmail(user);
 	}
 	
 public User signup(User user){
