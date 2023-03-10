@@ -1,4 +1,3 @@
-
 package com.bptn.feedApp.controller.jdbc;
 
 import java.util.List;
@@ -22,11 +21,11 @@ public class UserDao {
 		return this.jdbcTemplate.query(sql, new UserMapper());
 	}
 
-	public UserBean findByUsername(String username) {
+	public UserBean findByUsername(String userName) {
 
-		String sql = "SELECT * FROM \"User\" WHERE \"username\" = ?";
+		String sql = "SELECT * FROM \"User\" WHERE \"userName\" = ?";
 
-		List<UserBean> users = this.jdbcTemplate.query(sql, new UserMapper(), username);
+		List<UserBean> users = this.jdbcTemplate.query(sql, new UserMapper(), userName);
 
 		/*
 		 * Returns null if users is empty otherwise, returns the first element in the
@@ -37,13 +36,13 @@ public class UserDao {
 
 	public void createUser(UserBean user) {
 
-		String sql = "INSERT INTO \"User\" (\"user_first_name\", \"user_last_name\", \"username\", \"user_phone_number\", \"emailId\", user_password, \"email_verified\", \"date_created\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO \"User\" (\"firstName\", \"lastName\", \"userName\", phone, \"emailId\", password, \"emailVerified\", \"createdOn\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		logger.debug("Insert Query: {}", sql);
 
 		/* Executes the Insert Statement */
-		this.jdbcTemplate.update(sql, new Object[] { user.getUser_first_name(), user.getUser_last_name(), user.getUsername(),
-				user.getUser_phone_number(), user.getEmailId(), user.getUser_password(), user.getEmail_verified(), user.getDate_created() });
+		this.jdbcTemplate.update(sql, new Object[] { user.getFirstName(), user.getLastName(), user.getUsername(),
+				user.getPhone(), user.getEmailId(), user.getPassword(), user.getEmailVerified(), user.getCreatedOn() });
 
 	}
 

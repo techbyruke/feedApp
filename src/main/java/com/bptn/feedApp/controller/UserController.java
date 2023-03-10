@@ -51,14 +51,14 @@ public class UserController {
 			@PathVariable String phone, @PathVariable String emailId) {
 		User user = new User();
 		
-		user.setUser_first_name(first);
-		user.setUser_last_name(last);
-		user.setUsername(username);
-		user.setUser_password(password);
-		user.setUser_phone_number(phone);
+		user.setFirstName(first);
+		user.setLastName(last);
+		user.setUserName(username);
+		user.setPassword(password);
+		user.setPhone(phone);
 		user.setEmailId(emailId);
-		user.setEmail_verified(false);
-		user.setDate_created(Timestamp.from(Instant.now()));
+		user.setEmailVerified(false);
+		user.setCreatedOn(Timestamp.from(Instant.now()));
 				
 		logger.debug("The createUser() method was invoked!, user={}", user.toString());
 				
