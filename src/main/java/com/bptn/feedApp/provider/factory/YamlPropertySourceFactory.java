@@ -12,6 +12,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
+//Created class for YamlPropertySourceFactory to implement PropertySourceFactory
 public class YamlPropertySourceFactory implements PropertySourceFactory {
     @Override
     public PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) throws IOException {
