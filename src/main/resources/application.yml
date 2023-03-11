@@ -1,29 +1,47 @@
-
 # Tomcat Server
 server:
   port: 8080
-  
+
 # Logger
 logging.level:
   web: DEBUG
   '[com.bptn.feedapp]': DEBUG
-  
+  '[org.hibernate.type]': INFO
+       
 # Active Profile
 spring:
   profiles:
     active: default
-    
+
+# DevTools Enabled     
+  devtools:
+    add-properties: true
+        
 # Banner Text
   banner:
     charset: UTF-8
-    location: classpath:/banner/academy.txt  
-    
+    location: classpath:/banner/academy.txt
+
 # Jackson Settings
   jackson:
     time-zone: America/Toronto
     date-format: "yyyy-MM-dd HH:mm:ss" 
-    
- # Common Database Settings
+      
+# Email Settings
+  mail:
+    username: techbyruke@gmail.com
+    password: hmeigczslbajenou
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            
+# Common Database Settings
   sql:
     init:
       continue-on-error: false
@@ -38,9 +56,9 @@ spring:
       hibernate:
         '[format_sql]': true        
     hibernate:
-      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 
 ---
+
 # Default Profile
 spring:
   config:
@@ -56,19 +74,4 @@ spring:
       maximum-pool-size: 2
   jpa:
     hibernate:
-      ddl-auto: validate 
-      
-  # Email Settings
-  mail:
-    username: <techbyruke@gmail.com>
-    password: <hmeigczslbajenou>
-    host: smtp.gmail.com
-    port: 587
-    protocol: smtp
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true    
-                
+      ddl-auto: validate

@@ -1,28 +1,30 @@
 package com.bptn.feedApp.service;
+
 import org.springframework.stereotype.Service;
+
 import java.sql.Timestamp;
 import java.time.Instant;
+
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bptn.feedApp.repository.UserRepository;
 
 import com.bptn.feedApp.jpa.User;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	UserRepository userRepository;
 	    
 	@Autowired
 	EmailService emailService;
 	
-	
-	
 	public List<User> listUsers() {
-		return this.userRepository.findAll();
-			
+		return this.userRepository.findAll();		
 	}
 	
 	public Optional<User> findByUsername(String username) {
@@ -32,15 +34,17 @@ public class UserService {
 	public void deleteUserById(Integer userId) {
 		userRepository.deleteById(userId);
 	}
-
+	
 	public void createUser(User user) {
 		this.userRepository.save(user);
-	    this.emailService.sendVerificationEmail(user);
 	}
 	
-public User signup(User user){
+	
+	public User signup(User user){
 		
-		user.setUsername(user.getUserName().toLowerCase());
+		
+		
+		user.setUsername(user.getUsername().toLowerCase());
 		user.setEmailId(user.getEmailId().toLowerCase());
 		
 		user.setEmailVerified(false);
@@ -48,14 +52,11 @@ public User signup(User user){
 		user.setCreatedOn(Timestamp.from(Instant.now()));
 		
 		this.userRepository.save(user);
+	    
+		this.emailService.sendVerificationEmail(user);
 		
 		return user;
 		
-		
 	}
-
+	
 }
-
-
-
-
