@@ -48,7 +48,17 @@ public class UserController {
                                 logger.debug("The findByUsername() method was invoked!, username={}", username);
                                 return this.userService.findByUsername(username);
                 }
- 
+                
+                @GetMapping("/verify/email")
+                public void verifyEmail() {
+                		
+                	logger.debug("Verifying Email");
+                		
+                	this.userService.verifyEmail();
+                }
+                
+                
+                
                 @GetMapping("/{first}/{last}/{username}/{password}/{phone}/{emailId}")
                 public String createUser(@PathVariable String first, @PathVariable String last, @PathVariable String username,
                                                 @PathVariable String password, @PathVariable String phone, @PathVariable String emailId) {
