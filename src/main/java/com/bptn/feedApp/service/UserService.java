@@ -22,6 +22,9 @@ import com.bptn.feedApp.provider.ResourceProvider;
 import com.bptn.feedApp.repository.UserRepository;
 import com.bptn.feedApp.security.JwtService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import org.springframework.http.HttpHeaders;
 
@@ -45,6 +48,9 @@ public class UserService {
 
 	@Autowired
 	ResourceProvider provider;
+	
+	
+	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	public List<User> listUsers() {
 		return this.userRepository.findAll();		
@@ -74,6 +80,19 @@ public class UserService {
 
 		this.userRepository.save(user);
 }
+	
+	public void sendResetPasswordEmail(String emailId) {
+
+		Optional<User> opt = this.userRepository.findByEmailId(emailId);
+
+		if (opt.isPresent()) {
+			this.emailService.sendResetPasswordEmail(opt.get());
+		} else {
+			logger.debug("Email doesn't exist, {}", emailId);
+		}
+	}
+	
+	
 
 	public HttpHeaders generateJwtHeader(String username) {
 		HttpHeaders headers = new HttpHeaders();
