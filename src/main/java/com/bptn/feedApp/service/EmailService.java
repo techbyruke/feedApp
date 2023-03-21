@@ -35,6 +35,13 @@ public class EmailService {
 				String.format("Welcome %s %s", user.getFirstName(), user.getLastName()),
 				this.provider.getClientVerifyExpiration());
 	}
+	
+	
+	@Async
+	public void sendResetPasswordEmail(User user) {
+			
+		this.sendEmail(user, this.provider.getClientResetParam(), "reset_password", "Reset your password", this.provider.getClientResetExpiration());
+	}	
 
 	private void sendEmail(User user, String clientParam, String templateName, String emailSubject, long expiration) {
 		try {
