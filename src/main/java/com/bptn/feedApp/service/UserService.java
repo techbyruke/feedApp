@@ -101,6 +101,21 @@ public class UserService {
 		return headers;
 	}
 	
+	public void resetPassword(String password) {
+
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		User user = this.userRepository.findByUsername(username)
+					.orElseThrow(() -> new UserNotFoundException(String.format("Username doesn't exist, %s",username)));
+
+		user.setPassword(this.passwordEncoder.encode(password));
+
+		this.userRepository.save(user);
+	}
+	
+	
+
+	
 	private void validateUsernameAndEmail(String username, String emailId) {
 
 		this.userRepository.findByUsername(username).ifPresent(u -> {
