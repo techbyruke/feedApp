@@ -100,6 +100,13 @@ public class UserController {
                 		this.userService.sendResetPasswordEmail(emailId);
                 }  
                 
+                @GetMapping("/get")
+                public User getUser() {
+                		
+                	logger.debug("Getting User Data");
+                		
+                	return this.userService.getUser();
+                }
                 
                 @GetMapping("/{first}/{last}/{username}/{password}/{phone}/{emailId}")
                 public String createUser(@PathVariable String first, @PathVariable String last, @PathVariable String username,
