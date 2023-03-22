@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
+import com.bptn.feedApp.jpa.Profile;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -227,4 +229,33 @@ private User updateUser(User user, User currentUser) {
 					            .orElseThrow(()-> new UserNotFoundException(String.format("Username doesn't exist, %s", username)));
 	}
 	
+	private User updateUserProfile(Profile profile, User user) {
+
+		Profile currentProfile = user.getProfile();
+
+		if (Optional.ofNullable(currentProfile).isPresent()) {
+
+			this.updateValue(profile::getHeadline, currentProfile::setHeadline);
+			this.updateValue(profile::getBio, currentProfile::setBio);
+			this.updateValue(profile::getCity, currentProfile::setCity);
+			this.updateValue(profile::getCountry, currentProfile::setCountry);
+			this.updateValue(profile::getPicture, currentProfile::setPicture);
+		} 
+	    else {
+			user.setProfile(profile);
+			profile.setUser(user);
+		}
+
+		return this.userRepository.save(user);
+	}
+	
+	public User updateUserProfile(Profile profile) {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		/* Get and Update User */	
+		return this.userRepository.findByUsername(username)
+		              .map(user -> this.updateUserProfile(profile, user))
+	                  .orElseThrow(()-> new UserNotFoundException(String.format("Username doesn't exist, %s", username)));
+	}
 }
