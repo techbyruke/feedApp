@@ -168,4 +168,13 @@ public class UserService {
 		return this.userRepository.findByUsername(user.getUsername()).map(UserService::isEmailVerified).get();
 	}
 		
+	public User getUser() {
+
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		/* Get User from the DB. */
+		return this.userRepository.findByUsername(username)
+	.orElseThrow(() -> new UserNotFoundException(String.format("Username doesn't exist, %s",username)));
+	}
+	
 }
