@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
  
 import com.bptn.feedApp.jpa.User;
 import com.bptn.feedApp.service.UserService;
+import com.fasterxml.jackson.databind.JsonNode;
 
 
 
@@ -57,6 +58,13 @@ public class UserController {
                 	return new ResponseEntity<>(user, jwtHeader, OK);
                 }   
                 
+                @PostMapping("/reset")
+                public void passwordReset(@RequestBody JsonNode json) {
+
+                	logger.debug("Resetting Password, password: {}", json.get("password").asText());
+
+                	this.userService.resetPassword(json.get("password").asText());
+                }
                 
                 @GetMapping("/test")
                 public String testController() {
