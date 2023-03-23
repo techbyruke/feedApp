@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bptn.feedApp.domain.PageResponse;
 import com.bptn.feedApp.jpa.Feed;
 import com.bptn.feedApp.service.FeedService;
 
@@ -32,6 +33,13 @@ public class FeedController {
 		return this.feedService.getFeedById(feedId);	
 	}
 	
+	@GetMapping("/user/{pageNum}/{pageSize}")
+	public PageResponse<Feed> getUserFeeds(@PathVariable int pageNum, @PathVariable int pageSize) {
+			
+		logger.debug("Getting User Feeds List, pageNum: {}, pageSize: {}", pageNum, pageSize);
+			
+		return this.feedService.getUserFeeds(pageNum, pageSize);	
+	}
 	
 	@PostMapping
 	public Feed createFeed(@RequestBody Feed feed) {
