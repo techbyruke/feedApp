@@ -27,20 +27,28 @@ public class FeedController {
 
 	@GetMapping("/{feedId}")
 	public Feed getFeed(@PathVariable int feedId) {
-			
+
 		logger.debug("Getting Feed, feedId: {}", feedId);
-			
-		return this.feedService.getFeedById(feedId);	
+
+		return this.feedService.getFeedById(feedId);
 	}
-	
+
 	@GetMapping("/user/{pageNum}/{pageSize}")
 	public PageResponse<Feed> getUserFeeds(@PathVariable int pageNum, @PathVariable int pageSize) {
-			
+
 		logger.debug("Getting User Feeds List, pageNum: {}, pageSize: {}", pageNum, pageSize);
-			
-		return this.feedService.getUserFeeds(pageNum, pageSize);	
+
+		return this.feedService.getUserFeeds(pageNum, pageSize);
 	}
-	
+
+	@GetMapping("/other/{pageNum}/{pageSize}")
+	public PageResponse<Feed> getOtherUsersFeeds(@PathVariable int pageNum, @PathVariable int pageSize) {
+
+		logger.debug("Getting Other Users Feeds List, pageNum: {}, pageSize: {}", pageNum, pageSize);
+
+		return this.feedService.getOtherUsersFeeds(pageNum, pageSize);
+	}
+
 	@PostMapping
 	public Feed createFeed(@RequestBody Feed feed) {
 
