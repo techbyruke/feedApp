@@ -67,14 +67,15 @@ spring:
        
 # Database Settings
   datasource:
-    url: jdbc:postgresql://localhost:5432/feedApp
+    url: jdbc:postgresql://localhost:5432/feedAppModal
     username: postgres
     password: pg123
     hikari:
       maximum-pool-size: 2
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: validate    
+      
       
 ---      
 # Prod Profile
@@ -88,15 +89,14 @@ spring:
   
 # Database Settings 
   datasource:
-    url: jdbc:postgresql://localhost:5432/feedApp
+    url: jdbc:postgresql://localhost:5432/feedAppModal
     username: postgres
     password: pg123
     hikari:
       maximum-pool-size: 2
   jpa:
     hibernate:
-      ddl-auto: validate
-      
+      ddl-auto: validate 
 ---
 # Test Profile
     
